@@ -7,8 +7,10 @@ services:
       - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: alba
-      POSTGRES_USER: albauser
-      POSTGRES_PASSWORD: albapassword
+      POSTGRES_USER: alba_user
+      POSTGRES_PASSWORD: alba_password
+    ports:
+      - "5432:5432"  
 
   web:
     build: .
@@ -19,6 +21,13 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    environment:
+      - DEBUG=1
+      - DJANGO_DB_HOST=db
+      - DJANGO_DB_NAME=alba
+      - DJANGO_DB_USER=alba_user
+      - DJANGO_DB_PASSWORD=alba_password  
+      
 
 volumes:
   postgres_data:
