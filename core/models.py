@@ -42,7 +42,6 @@ class Content(models.Model):
         return self.title
 
 
-
 class ActivityLog(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
@@ -51,7 +50,6 @@ class ActivityLog(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.action} - {self.content.title}"
-
 
 
 class Payment(models.Model):
@@ -64,7 +62,6 @@ class Payment(models.Model):
         return f"{self.user.username} - {self.subscription_type} - {self.amount}"
 
 
-
 class Notification(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     message = models.CharField(max_length=255)
@@ -75,7 +72,6 @@ class Notification(models.Model):
         return f"{self.user.username} - {self.message}"
 
 
-
 class ParentControl(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
@@ -83,7 +79,6 @@ class ParentControl(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.content.title} - {'Restricted' if self.restricted else 'Allowed'}"
-
 
 
 class DevelopmentMilestone(models.Model):
@@ -96,7 +91,6 @@ class DevelopmentMilestone(models.Model):
         return f"{self.user.username} - {self.milestone} - {self.achieved_date}"
 
 
-
 class PersonalizedAdvice(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     advice = models.TextField()
@@ -104,7 +98,6 @@ class PersonalizedAdvice(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.date_provided}"
-
 
 
 class FriendRequest(models.Model):
@@ -115,7 +108,6 @@ class FriendRequest(models.Model):
 
     def __str__(self):
         return f"{self.from_user.username} to {self.to_user.username} - {self.status}"
-
 
 
 class Message(models.Model):
