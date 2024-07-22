@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,11 +82,11 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DJANGO_DB_NAME'),
-        'USER': os.getenv('DJANGO_DB_USER'),
-        'PASSWORD': os.getenv('DJANGO_DB_PASSWORD'),
-        'HOST': os.getenv('DJANGO_DB_HOST'),
-        'PORT': os.getenv('DJANGO_DB_PORT'),
+        'NAME': os.environ.get('DJANGO_DB_NAME', 'default_db_name'),
+        'USER': os.environ.get('DJANGO_DB_USER', 'default_user'),
+        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', ''),
+        'HOST': os.environ.get('DJANGO_DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DJANGO_DB_PORT', '5432'),
     }
 }
 
@@ -142,8 +139,7 @@ SIMPLE_JWT = {
 
 #OPENAI API
 
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
