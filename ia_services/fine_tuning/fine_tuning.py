@@ -1,68 +1,63 @@
 import torch
 from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
-from datasets import Dataset, load_metric
+from datasets import load_metric, Dataset
 import json
 
-# Cargar el dataset
-def load_data(path):
+# Cargar y categorizar el dataset
+def load_and_categorize_data(path):
+    obscene_words = ["malo", "feo", "tonto"]  # Puedes agregar más palabras a esta lista
+    negative_context_keywords = ["triste", "ansiedad", "acoso", "maltrato"]
+    
+    def categorize_entry(entry):
+        text = entry['text']
+        is_obscene = any(word in text for word in obscene_words)
+        
+        sentiment = entry.get('sentiment', {})
+        polarity = sentiment.get('polarity', 0)
+        is_emotionally_negative = entry['is_negative'] or polarity < 0 or entry['is_subtle_negative']
+        
+        context = entry.get('context', "")
+        if any(word in context for word in negative_context_keywords):
+            is_emotionally_negative = True
+        
+        is_appropriate = not is_obscene and not is_emotionally_negative
+        
+        entry['is_obscene'] = is_obscene
+        entry['is_emotionally_negative'] = is_emotionally_negative
+        entry['is_appropriate'] = is_appropriate
+        
+        return entry
+    
     with open(path, 'r', encoding='utf-8') as f:
         data = json.load(f)
+    
+    for entry in data:
+        categorize_entry(entry)
+    
     return data
 
-# Preparar el dataset para el entrenamiento
-def prepare_dataset(data):
-    texts = [item['text'] for item in data]
-    is_negatives = [item['is_negative'] for item in data]
-    age_groups = [item['age_group'] for item in data]
-    phrase_types = [item['phrase_type'] for item in data]
-    intents = [item['intent'] for item in data]
-    polarities = [item['sentiment']['polarity'] for item in data]
-    subjectivities = [item['sentiment']['subjectivity'] for item in data]
-    complexities = [item['complexity'] for item in data]
-    contexts = [item['context'] for item in data]
-    contains_sarcasm = [item['contains_sarcasm'] for item in data]
+# Cargar y categorizar el dataset
+dataset_path = 'ia_services/fine_tuning/dataset/text_dataset.json'
+data = load_and_categorize_data(dataset_path)
 
-    return Dataset.from_dict({
-        'text': texts,
-        'is_negative': is_negatives,
-        'age_group': age_groups,
-        'phrase_type': phrase_types,
-        'intent': intents,
-        'polarity': polarities,
-        'subjectivity': subjectivities,
-        'complexity': complexities,
-        'context': contexts,
-        'contains_sarcasm': contains_sarcasm
-    })
+# Convertir datos a un dataset de Hugging Face
+dataset = Dataset.from_list(data)
 
-# Cargar y preparar el dataset
-dataset_path = 'ia_services/fine_tuning/dataset/dataset.json'
-data = load_data(dataset_path)
-dataset = prepare_dataset(data)
+# Dividir el dataset en entrenamiento y evaluación
+split_dataset = dataset.train_test_split(test_size=0.2)
+train_dataset = split_dataset['train']
+eval_dataset = split_dataset['test']
 
-# Tokenizer y modelo preentrenado
+# Tokenizar los datos
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertForSequenceClassification.from_pretrained('bert-base-uncased')
 
-# Tokenización de los textos y procesamiento de características adicionales
-def tokenize_and_process(examples):
-    tokenized_inputs = tokenizer(examples['text'], padding='max_length', truncation=True)
-    tokenized_inputs['age_group'] = examples['age_group']
-    tokenized_inputs['phrase_type'] = examples['phrase_type']
-    tokenized_inputs['intent'] = examples['intent']
-    tokenized_inputs['polarity'] = examples['polarity']
-    tokenized_inputs['subjectivity'] = examples['subjectivity']
-    tokenized_inputs['complexity'] = examples['complexity']
-    tokenized_inputs['context'] = examples['context']
-    tokenized_inputs['contains_sarcasm'] = examples['contains_sarcasm']
-    return tokenized_inputs
+def tokenize_function(examples):
+    return tokenizer(examples['text'], padding='max_length', truncation=True)
 
-tokenized_datasets = dataset.map(tokenize_and_process, batched=True)
+tokenized_train_dataset = train_dataset.map(tokenize_function, batched=True)
+tokenized_eval_dataset = eval_dataset.map(tokenize_function, batched=True)
 
-# Preparar datos para el Trainer
-train_dataset = tokenized_datasets
-# No se puede dividir en train y test si no tenemos un dataset suficientemente grande.
-
+# Preparar los argumentos de entrenamiento
 training_args = TrainingArguments(
     output_dir='./results',
     evaluation_strategy='epoch',
@@ -80,12 +75,14 @@ def compute_metrics(eval_pred):
     predictions = torch.argmax(logits, dim=-1)
     return metric.compute(predictions=predictions, references=labels)
 
-# Entrenador
+# Crear el modelo y el entrenador
+model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=3)  # Asumiendo que hay tres etiquetas
+
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=train_dataset,  # Usar el mismo dataset para evaluación por falta de datos
+    train_dataset=tokenized_train_dataset,
+    eval_dataset=tokenized_eval_dataset,
     tokenizer=tokenizer,
     compute_metrics=compute_metrics
 )

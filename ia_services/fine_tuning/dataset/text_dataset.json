@@ -6724,5 +6724,1332 @@
                 "timestamp": "2024-07-08T15:30:00"
             }
         ]
-    }
+    },
+    [
+        {
+          "id": "241",
+          "text": "¿Por qué el cielo es azul y no verde como las hojas?",
+          "age_group": "5-6",
+          "phrase_type": "pregunta",
+          "intent": "preguntar",
+          "sentiment": {
+            "polarity": 0.2,
+            "subjectivity": 0.3
+          },
+          "topic": "naturaleza",
+          "complexity": 0.3,
+          "context": "Paseo en el parque con sus padres",
+          "is_negative": false,
+          "is_subtle_negative": false,
+          "contains_sarcasm": false,
+          "dialect": "estándar",
+          "entities": ["cielo", "hojas"],
+          "conversation_history": [
+            {
+              "text": "Mira qué bonito está el cielo hoy.",
+              "timestamp": "2024-07-22T10:15:00"
+            }
+          ]
+        },
+        {
+          "id": "242",
+          "text": "No quiero comer brócoli, es feo y verde como los monstruos.",
+          "age_group": "5-6",
+          "phrase_type": "negación",
+          "intent": "negarse",
+          "sentiment": {
+            "polarity": -0.7,
+            "subjectivity": 0.8
+          },
+          "topic": "comida",
+          "complexity": 0.4,
+          "context": "Hora de la cena en casa",
+          "is_negative": true,
+          "is_subtle_negative": false,
+          "contains_sarcasm": false,
+          "dialect": "estándar",
+          "entities": ["brócoli", "monstruos"],
+          "conversation_history": [
+            {
+              "text": "Es hora de comer tus vegetales.",
+              "timestamp": "2024-07-22T18:30:00"
+            }
+          ]
+        },
+        {
+          "id": "243",
+          "text": "Mi dibujo es el más bonito de la clase, ¿verdad mamá?",
+          "age_group": "7-8",
+          "phrase_type": "pregunta",
+          "intent": "buscar_aprobación",
+          "sentiment": {
+            "polarity": 0.8,
+            "subjectivity": 0.9
+          },
+          "topic": "arte",
+          "complexity": 0.5,
+          "context": "Mostrando su tarea de arte a su madre",
+          "is_negative": false,
+          "is_subtle_negative": false,
+          "contains_sarcasm": false,
+          "dialect": "estándar",
+          "entities": ["mamá"],
+          "conversation_history": [
+            {
+              "text": "Mira lo que hice hoy en la escuela.",
+              "timestamp": "2024-07-22T15:45:00"
+            }
+          ]
+        },
+        {
+          "id": "244",
+          "text": "Si como todas mis verduras, ¿puedo jugar videojuegos por una hora más?",
+          "age_group": "7-8",
+          "phrase_type": "pregunta",
+          "intent": "negociar",
+          "sentiment": {
+            "polarity": 0.4,
+            "subjectivity": 0.6
+          },
+          "topic": "tecnología",
+          "complexity": 0.6,
+          "context": "Negociando tiempo de pantalla durante la cena",
+          "is_negative": false,
+          "is_subtle_negative": false,
+          "contains_sarcasm": false,
+          "dialect": "estándar",
+          "entities": ["verduras", "videojuegos"],
+          "conversation_history": [
+            {
+              "text": "Es hora de apagar la consola y venir a cenar.",
+              "timestamp": "2024-07-22T19:00:00"
+            }
+          ]
+        },
+        {
+          "id": "245",
+          "text": "Claro, me encanta hacer tarea de matemáticas en verano. Es súper divertido.",
+          "age_group": "9-10",
+          "phrase_type": "afirmación",
+          "intent": "expresar_descontento",
+          "sentiment": {
+            "polarity": -0.6,
+            "subjectivity": 0.7
+          },
+          "topic": "escuela",
+          "complexity": 0.7,
+          "context": "Reacción a tarea de verano",
+          "is_negative": true,
+          "is_subtle_negative": true,
+          "contains_sarcasm": true,
+          "dialect": "estándar",
+          "entities": ["matemáticas", "verano"],
+          "conversation_history": [
+            {
+              "text": "Recuerda que tienes que hacer tus ejercicios de matemáticas hoy.",
+              "timestamp": "2024-07-22T11:00:00"
+            }
+          ]
+        },
+        {
+          "id": "246",
+          "text": "¿Crees que los dinosaurios hubieran sobrevivido si hubieran tenido teléfonos para llamar pidiendo ayuda?",
+          "age_group": "9-10",
+          "phrase_type": "pregunta",
+          "intent": "bromear",
+          "sentiment": {
+            "polarity": 0.5,
+            "subjectivity": 0.8
+          },
+          "topic": "otros",
+          "complexity": 0.8,
+          "context": "Viendo un documental sobre dinosaurios",
+          "is_negative": false,
+          "is_subtle_negative": false,
+          "contains_sarcasm": true,
+          "dialect": "estándar",
+          "entities": ["dinosaurios", "teléfonos"],
+          "conversation_history": [
+            {
+              "text": "Los dinosaurios se extinguieron hace millones de años.",
+              "timestamp": "2024-07-22T20:15:00"
+            }
+          ]
+        },
+        {
+          "id": "247",
+          "text": "La profe dijo que mi ensayo estaba 'interesante'. Eso significa que es malo, ¿no?",
+          "age_group": "11-12",
+          "phrase_type": "pregunta",
+          "intent": "buscar_confirmación",
+          "sentiment": {
+            "polarity": -0.3,
+            "subjectivity": 0.6
+          },
+          "topic": "escuela",
+          "complexity": 0.8,
+          "context": "Discutiendo calificaciones escolares",
+          "is_negative": true,
+          "is_subtle_negative": true,
+          "contains_sarcasm": false,
+          "dialect": "estándar",
+          "entities": ["profe", "ensayo"],
+          "conversation_history": [
+            {
+              "text": "¿Qué tal te fue con tu ensayo de historia?",
+              "timestamp": "2024-07-22T16:30:00"
+            }
+          ]
+        },
+        {
+          "id": "248",
+          "text": "Si los adultos dicen que mentir está mal, ¿por qué inventaron a Santa Claus?",
+          "age_group": "11-12",
+          "phrase_type": "pregunta",
+          "intent": "cuestionar",
+          "sentiment": {
+            "polarity": -0.2,
+            "subjectivity": 0.7
+          },
+          "topic": "familia",
+          "complexity": 0.9,
+          "context": "Conversación sobre tradiciones navideñas",
+          "is_negative": false,
+          "is_subtle_negative": true,
+          "contains_sarcasm": false,
+          "dialect": "estándar",
+          "entities": ["adultos", "Santa Claus"],
+          "conversation_history": [
+            {
+              "text": "Pronto será Navidad, ¿estás emocionado?",
+              "timestamp": "2024-07-22T18:00:00"
+            }
+          ]
+        },
+        {
+          "id": "249",
+          "text": "¡Guau! ¡Este videojuego es increíble! Los gráficos son tan realistas.",
+          "age_group": "9-10",
+          "phrase_type": "exclamación",
+          "intent": "expresar_emoción",
+          "sentiment": {
+            "polarity": 0.9,
+            "subjectivity": 0.7
+          },
+          "topic": "tecnología",
+          "complexity": 0.7,
+          "context": "Jugando un nuevo videojuego",
+          "is_negative": false,
+          "is_subtle_negative": false,
+          "contains_sarcasm": false,
+          "dialect": "estándar",
+          "entities": ["videojuego", "gráficos"],
+          "conversation_history": [
+            {
+              "text": "Mira el nuevo juego que me regalaron.",
+              "timestamp": "2024-07-22T14:00:00"
+            }
+          ]
+        },
+        {
+          "id": "250",
+          "text": "No sé por qué tengo que aprender fracciones. Nunca las voy a usar en la vida real.",
+          "age_group": "11-12",
+          "phrase_type": "afirmación",
+          "intent": "quejarse",
+          "sentiment": {
+            "polarity": -0.6,
+            "subjectivity": 0.8
+          },
+          "topic": "escuela",
+          "complexity": 0.8,
+          "context": "Haciendo tarea de matemáticas",
+          "is_negative": true,
+          "is_subtle_negative": false,
+          "contains_sarcasm": false,
+          "dialect": "estándar",
+          "entities": ["fracciones"],
+          "conversation_history": [
+            {
+              "text": "¿Cómo vas con tus ejercicios de fracciones?",
+              "timestamp": "2024-07-22T17:30:00"
+            }
+          ]
+        },
+        {
+            "id": "250",
+            "text": "¿Por qué los pájaros pueden volar y nosotros no?",
+            "age_group": "5-6",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": 0.0,
+                "subjectivity": 0.5
+            },
+            "topic": "naturaleza",
+            "complexity": 0.2,
+            "context": "Curiosidad sobre el mundo natural",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["pájaros"],
+            "conversation_history": [
+                {
+                    "text": "Mira los pájaros en el cielo.",
+                    "timestamp": "2024-07-10T10:30:00"
+                }
+            ]
+        },
+        {
+            "id": "251",
+            "text": "No me gustan las espinacas.",
+            "age_group": "5-6",
+            "phrase_type": "afirmación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": -0.7,
+                "subjectivity": 0.8
+            },
+            "topic": "comida",
+            "complexity": 0.2,
+            "context": "Durante la cena",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["espinacas"],
+            "conversation_history": [
+                {
+                    "text": "Come tus vegetales, son buenos para ti.",
+                    "timestamp": "2024-07-10T18:00:00"
+                }
+            ]
+        },
+        {
+            "id": "252",
+            "text": "Quiero jugar con mis amigos después de la escuela.",
+            "age_group": "7-8",
+            "phrase_type": "afirmación",
+            "intent": "solicitar_ayuda",
+            "sentiment": {
+                "polarity": 0.5,
+                "subjectivity": 0.5
+            },
+            "topic": "amigos",
+            "complexity": 0.4,
+            "context": "Solicitud de permiso para jugar",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["amigos"],
+            "conversation_history": [
+                {
+                    "text": "Termina tus deberes primero.",
+                    "timestamp": "2024-07-10T15:00:00"
+                }
+            ]
+        },
+        {
+            "id": "253",
+            "text": "Ojalá pudiera volar como Superman.",
+            "age_group": "7-8",
+            "phrase_type": "afirmación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": 0.2,
+                "subjectivity": 0.7
+            },
+            "topic": "juegos",
+            "complexity": 0.4,
+            "context": "Imaginando ser un superhéroe",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["Superman"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué superpoder te gustaría tener?",
+                    "timestamp": "2024-07-10T11:00:00"
+                }
+            ]
+        },
+        {
+            "id": "254",
+            "text": "No quiero ir al dentista, me da miedo.",
+            "age_group": "7-8",
+            "phrase_type": "negación",
+            "intent": "negarse",
+            "sentiment": {
+                "polarity": -0.8,
+                "subjectivity": 0.9
+            },
+            "topic": "otros",
+            "complexity": 0.5,
+            "context": "Antes de una visita al dentista",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["dentista"],
+            "conversation_history": [
+                {
+                    "text": "Hoy tenemos cita con el dentista.",
+                    "timestamp": "2024-07-10T09:00:00"
+                }
+            ]
+        },
+        {
+            "id": "255",
+            "text": "¿Cómo se forman las montañas?",
+            "age_group": "9-10",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": 0.0,
+                "subjectivity": 0.5
+            },
+            "topic": "naturaleza",
+            "complexity": 0.6,
+            "context": "Interés por fenómenos naturales",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["montañas"],
+            "conversation_history": [
+                {
+                    "text": "Las montañas son muy grandes.",
+                    "timestamp": "2024-07-10T14:00:00"
+                }
+            ]
+        },
+        {
+            "id": "256",
+            "text": "No es justo que tenga que hacer toda la tarea solo.",
+            "age_group": "9-10",
+            "phrase_type": "negación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": -0.5,
+                "subjectivity": 0.8
+            },
+            "topic": "escuela",
+            "complexity": 0.7,
+            "context": "Queja sobre la cantidad de tarea",
+            "is_negative": true,
+            "is_subtle_negative": true,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["tarea"],
+            "conversation_history": [
+                {
+                    "text": "¿Has terminado tu tarea?",
+                    "timestamp": "2024-07-10T16:00:00"
+                }
+            ]
+        },
+        {
+            "id": "257",
+            "text": "Me encantan las historias de ciencia ficción.",
+            "age_group": "9-10",
+            "phrase_type": "afirmación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.8,
+                "subjectivity": 0.6
+            },
+            "topic": "arte",
+            "complexity": 0.6,
+            "context": "Compartir un gusto personal",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["ciencia ficción"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué tipo de libros te gusta leer?",
+                    "timestamp": "2024-07-10T17:00:00"
+                }
+            ]
+        },
+        {
+            "id": "258",
+            "text": "¿Por qué tengo que aprender matemáticas?",
+            "age_group": "9-10",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": -0.2,
+                "subjectivity": 0.5
+            },
+            "topic": "escuela",
+            "complexity": 0.7,
+            "context": "Duda sobre la utilidad de una materia escolar",
+            "is_negative": false,
+            "is_subtle_negative": true,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["matemáticas"],
+            "conversation_history": [
+                {
+                    "text": "Vamos a empezar con la clase de matemáticas.",
+                    "timestamp": "2024-07-10T10:00:00"
+                }
+            ]
+        },
+        {
+            "id": "259",
+            "text": "Oh genial, otra tarea más para hacer.",
+            "age_group": "11-12",
+            "phrase_type": "exclamación",
+            "intent": "bromear",
+            "sentiment": {
+                "polarity": -0.4,
+                "subjectivity": 0.9
+            },
+            "topic": "escuela",
+            "complexity": 0.8,
+            "context": "Reacción sarcástica ante más trabajo",
+            "is_negative": true,
+            "is_subtle_negative": true,
+            "contains_sarcasm": true,
+            "dialect": "estándar",
+            "entities": ["tarea"],
+            "conversation_history": [
+                {
+                    "text": "Hoy tenemos más deberes para casa.",
+                    "timestamp": "2024-07-10T12:00:00"
+                }
+            ]
+        },
+        {
+            "id": "260",
+            "text": "El juego que compraste ayer está súper aburrido.",
+            "age_group": "11-12",
+            "phrase_type": "afirmación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": -0.6,
+                "subjectivity": 0.7
+            },
+            "topic": "juegos",
+            "complexity": 0.8,
+            "context": "Expresión de desinterés por un juego",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["juego"],
+            "conversation_history": [
+                {
+                    "text": "Vamos a jugar el juego que compré ayer.",
+                    "timestamp": "2024-07-10T13:00:00"
+                }
+            ]
+        },
+        {
+            "id": "261",
+            "text": "¡Qué divertido fue el parque de atracciones!",
+            "age_group": "11-12",
+            "phrase_type": "exclamación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": 0.9,
+                "subjectivity": 0.8
+            },
+            "topic": "otros",
+            "complexity": 0.7,
+            "context": "Después de visitar un parque de atracciones",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["parque de atracciones"],
+            "conversation_history": [
+                {
+                    "text": "Nos divertimos mucho en el parque.",
+                    "timestamp": "2024-07-10T18:30:00"
+                }
+            ]
+        },
+        {
+            "id": "262",
+            "text": "¿Podemos tener pizza para cenar?",
+            "age_group": "11-12",
+            "phrase_type": "pregunta",
+            "intent": "solicitar_ayuda",
+            "sentiment": {
+                "polarity": 0.5,
+                "subjectivity": 0.6
+            },
+            "topic": "comida",
+            "complexity": 0.7,
+            "context": "Deseo de cambiar el plan de cena",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["pizza"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué quieres para cenar?",
+                    "timestamp": "2024-07-10T19:00:00"
+                }
+            ]
+        },
+        {
+            "id": "263",
+            "text": "Las clases en línea son aburridas.",
+            "age_group": "11-12",
+            "phrase_type": "afirmación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": -0.7,
+                "subjectivity": 0.8
+            },
+            "topic": "escuela",
+            "complexity": 0.8,
+            "context": "Opinión sobre la educación en línea",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["clases en línea"],
+            "conversation_history": [
+                {
+                    "text": "Hoy tenemos clases en línea.",
+                    "timestamp": "2024-07-10T09:00:00"
+                }
+            ]
+        },
+        {
+            "id": "264",
+            "text": "No entiendo por qué no puedo quedarme despierto más tarde.",
+            "age_group": "11-12",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": -0.3,
+                "subjectivity": 0.7
+            },
+            "topic": "familia",
+            "complexity": 0.8,
+            "context": "Cuestionando una regla familiar",
+            "is_negative": false,
+            "is_subtle_negative": true,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["quedarse despierto"],
+            "conversation_history": [
+                {
+                    "text": "Es hora de ir a la cama.",
+                    "timestamp": "2024-07-10T21:00:00"
+                }
+            ]
+        },
+        {
+            "id": "265",
+            "text": "Siempre soy yo quien tiene que sacar la basura.",
+            "age_group": "11-12",
+            "phrase_type": "afirmación",
+            "intent": "negarse",
+            "sentiment": {
+                "polarity": -0.5,
+                "subjectivity": 0.9
+            },
+            "topic": "familia",
+            "complexity": 0.8,
+            "context": "Protesta ante una tarea del hogar",
+            "is_negative": true,
+            "is_subtle_negative": true,
+            "contains_sarcasm": true,
+            "dialect": "estándar",
+            "entities": ["basura"],
+            "conversation_history": [
+                {
+                    "text": "Por favor, saca la basura.",
+                    "timestamp": "2024-07-10T18:00:00"
+                }
+            ]
+        },
+        {
+            "id": "266",
+            "text": "¿Por qué los adultos pueden hacer cosas divertidas y yo no?",
+            "age_group": "11-12",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": -0.4,
+                "subjectivity": 0.7
+            },
+            "topic": "familia",
+            "complexity": 0.8,
+            "context": "Duda sobre restricciones impuestas",
+            "is_negative": false,
+            "is_subtle_negative": true,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["adultos"],
+            "conversation_history": [
+                {
+                    "text": "Eso es solo para adultos.",
+                    "timestamp": "2024-07-10T20:00:00"
+                }
+            ]
+        },
+        {
+            "id": "267",
+            "text": "El maestro dijo que mi dibujo era muy creativo.",
+            "age_group": "5-6",
+            "phrase_type": "afirmación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.8,
+                "subjectivity": 0.6
+            },
+            "topic": "escuela",
+            "complexity": 0.3,
+            "context": "Después de una actividad escolar",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["maestro", "dibujo"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué hiciste en la escuela hoy?",
+                    "timestamp": "2024-07-10T16:30:00"
+                }
+            ]
+        },
+        {
+            "id": "268",
+            "text": "¿Podemos ir al parque después de comer?",
+            "age_group": "5-6",
+            "phrase_type": "pregunta",
+            "intent": "solicitar_ayuda",
+            "sentiment": {
+                "polarity": 0.6,
+                "subjectivity": 0.6
+            },
+            "topic": "juegos",
+            "complexity": 0.3,
+            "context": "Deseo de jugar al aire libre",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["parque"],
+            "conversation_history": [
+                {
+                    "text": "Terminemos de comer primero.",
+                    "timestamp": "2024-07-10T13:00:00"
+                }
+            ]
+        },
+        {
+            "id": "269",
+            "text": "¡Mamá, papá! Vi un conejo en el jardín.",
+            "age_group": "5-6",
+            "phrase_type": "exclamación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.9,
+                "subjectivity": 0.7
+            },
+            "topic": "naturaleza",
+            "complexity": 0.2,
+            "context": "Emoción al ver un animal",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["conejo", "jardín"],
+            "conversation_history": [
+                {
+                    "text": "Ve a jugar al jardín.",
+                    "timestamp": "2024-07-10T10:30:00"
+                }
+            ]
+        },
+        {
+            "id": "270",
+            "text": "¡No quiero ir a la cama aún!",
+            "age_group": "5-6",
+            "phrase_type": "negación",
+            "intent": "negarse",
+            "sentiment": {
+                "polarity": -0.7,
+                "subjectivity": 0.8
+            },
+            "topic": "familia",
+            "complexity": 0.2,
+            "context": "Resistencia a la hora de dormir",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": [],
+            "conversation_history": [
+                {
+                    "text": "Es hora de ir a la cama.",
+                    "timestamp": "2024-07-10T21:00:00"
+                }
+            ]
+        },
+        {
+            "id": "272",
+            "text": "¿Por qué tengo que comer verduras todos los días?",
+            "age_group": "7-8",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": -0.1,
+                "subjectivity": 0.6
+            },
+            "topic": "comida",
+            "complexity": 0.4,
+            "context": "Cuestionando hábitos alimenticios",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["verduras"],
+            "conversation_history": [
+                {
+                    "text": "Debes comer tus verduras.",
+                    "timestamp": "2024-07-11T12:00:00"
+                }
+            ]
+        },
+        {
+            "id": "273",
+            "text": "¡Mi equipo ganó el partido de fútbol hoy!",
+            "age_group": "7-8",
+            "phrase_type": "exclamación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": 0.9,
+                "subjectivity": 0.8
+            },
+            "topic": "deportes",
+            "complexity": 0.4,
+            "context": "Celebrando una victoria en el deporte",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["equipo", "partido de fútbol"],
+            "conversation_history": [
+                {
+                    "text": "¿Cómo te fue en el partido?",
+                    "timestamp": "2024-07-11T16:00:00"
+                }
+            ]
+        },
+        {
+            "id": "274",
+            "text": "No quiero compartir mis juguetes con mi hermano.",
+            "age_group": "7-8",
+            "phrase_type": "negación",
+            "intent": "negarse",
+            "sentiment": {
+                "polarity": -0.5,
+                "subjectivity": 0.7
+            },
+            "topic": "familia",
+            "complexity": 0.4,
+            "context": "Rechazo a compartir juguetes",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["juguetes"],
+            "conversation_history": [
+                {
+                    "text": "Comparte tus juguetes con tu hermano.",
+                    "timestamp": "2024-07-11T14:00:00"
+                }
+            ]
+        },
+        {
+            "id": "275",
+            "text": "La sopa está demasiado caliente.",
+            "age_group": "7-8",
+            "phrase_type": "afirmación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": -0.4,
+                "subjectivity": 0.6
+            },
+            "topic": "comida",
+            "complexity": 0.3,
+            "context": "Expresando incomodidad con la comida",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["sopa"],
+            "conversation_history": [
+                {
+                    "text": "Aquí tienes tu sopa.",
+                    "timestamp": "2024-07-11T19:00:00"
+                }
+            ]
+        },
+        {
+            "id": "276",
+            "text": "¿Podemos ver una película esta noche?",
+            "age_group": "7-8",
+            "phrase_type": "pregunta",
+            "intent": "solicitar_ayuda",
+            "sentiment": {
+                "polarity": 0.6,
+                "subjectivity": 0.6
+            },
+            "topic": "otros",
+            "complexity": 0.4,
+            "context": "Solicitando ver una película",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["película"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué quieres hacer esta noche?",
+                    "timestamp": "2024-07-11T18:00:00"
+                }
+            ]
+        },
+        {
+            "id": "277",
+            "text": "Me gusta mucho el nuevo maestro.",
+            "age_group": "7-8",
+            "phrase_type": "afirmación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.8,
+                "subjectivity": 0.6
+            },
+            "topic": "escuela",
+            "complexity": 0.4,
+            "context": "Opinión sobre el nuevo maestro",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["maestro"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué piensas del nuevo maestro?",
+                    "timestamp": "2024-07-11T15:00:00"
+                }
+            ]
+        },
+        {
+            "id": "278",
+            "text": "¡Papá, construí una torre muy alta con bloques!",
+            "age_group": "5-6",
+            "phrase_type": "exclamación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.9,
+                "subjectivity": 0.7
+            },
+            "topic": "juegos",
+            "complexity": 0.3,
+            "context": "Mostrando entusiasmo por un logro",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["torre", "bloques"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué estás construyendo?",
+                    "timestamp": "2024-07-11T11:00:00"
+                }
+            ]
+        },
+        {
+            "id": "279",
+            "text": "¿Por qué las estrellas brillan en la noche?",
+            "age_group": "5-6",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": 0.1,
+                "subjectivity": 0.6
+            },
+            "topic": "naturaleza",
+            "complexity": 0.3,
+            "context": "Curiosidad sobre las estrellas",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["estrellas"],
+            "conversation_history": [
+                {
+                    "text": "Mira las estrellas esta noche.",
+                    "timestamp": "2024-07-11T20:30:00"
+                }
+            ]
+        },
+        {
+            "id": "280",
+            "text": "¡Ganamos la carrera en el recreo!",
+            "age_group": "5-6",
+            "phrase_type": "exclamación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": 0.9,
+                "subjectivity": 0.8
+            },
+            "topic": "escuela",
+            "complexity": 0.2,
+            "context": "Celebrando ganar una carrera",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["carrera"],
+            "conversation_history": [
+                {
+                    "text": "¿Cómo fue el recreo hoy?",
+                    "timestamp": "2024-07-11T10:30:00"
+                }
+            ]
+        },
+        {
+            "id": "281",
+            "text": "No me gusta ese libro, es aburrido.",
+            "age_group": "5-6",
+            "phrase_type": "negación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": -0.6,
+                "subjectivity": 0.7
+            },
+            "topic": "otros",
+            "complexity": 0.3,
+            "context": "Opinión sobre un libro",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["libro"],
+            "conversation_history": [
+                {
+                    "text": "Vamos a leer este libro.",
+                    "timestamp": "2024-07-11T19:00:00"
+                }
+            ]
+        },
+        {
+            "id": "282",
+            "text": "Quiero invitar a mis amigos a mi cumpleaños.",
+            "age_group": "7-8",
+            "phrase_type": "afirmación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.8,
+                "subjectivity": 0.6
+            },
+            "topic": "amigos",
+            "complexity": 0.4,
+            "context": "Planificando una fiesta de cumpleaños",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["cumpleaños"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué quieres hacer para tu cumpleaños?",
+                    "timestamp": "2024-07-11T09:00:00"
+                }
+            ]
+        },
+        {
+            "id": "283",
+            "text": "¿Por qué los pájaros vuelan tan alto?",
+            "age_group": "7-8",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": 0.2,
+                "subjectivity": 0.6
+            },
+            "topic": "naturaleza",
+            "complexity": 0.4,
+            "context": "Curiosidad sobre los pájaros",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["pájaros"],
+            "conversation_history": [
+                {
+                    "text": "Mira esos pájaros volando.",
+                    "timestamp": "2024-07-11T10:00:00"
+                }
+            ]
+        },
+        {
+            "id": "284",
+            "text": "¡Gané el juego de mesa otra vez!",
+            "age_group": "7-8",
+            "phrase_type": "exclamación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": 0.9,
+                "subjectivity": 0.8
+            },
+            "topic": "juegos",
+            "complexity": 0.4,
+            "context": "Celebrando una victoria en un juego",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["juego de mesa"],
+            "conversation_history": [
+                {
+                    "text": "¿Cómo te fue en el juego?",
+                    "timestamp": "2024-07-11T17:00:00"
+                }
+            ]
+        },
+        {
+            "id": "285",
+            "text": "No quiero ir al parque hoy, estoy cansado.",
+            "age_group": "7-8",
+            "phrase_type": "negación",
+            "intent": "negarse",
+            "sentiment": {
+                "polarity": -0.5,
+                "subjectivity": 0.7
+            },
+            "topic": "naturaleza",
+            "complexity": 0.4,
+            "context": "Rechazo a ir al parque",
+            "is_negative": true,
+            "is_subtle_negative": true,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["parque"],
+            "conversation_history": [
+                {
+                    "text": "Vamos al parque esta tarde.",
+                    "timestamp": "2024-07-11T14:30:00"
+                }
+            ]
+        },
+        {
+            "id": "286",
+            "text": "La pintura que hice es muy colorida.",
+            "age_group": "7-8",
+            "phrase_type": "afirmación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.8,
+                "subjectivity": 0.6
+            },
+            "topic": "arte",
+            "complexity": 0.4,
+            "context": "Describiendo una pintura",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["pintura"],
+            "conversation_history": [
+                {
+                    "text": "Muéstrame lo que pintaste.",
+                    "timestamp": "2024-07-11T13:00:00"
+                }
+            ]
+        },
+        {
+            "id": "287",
+            "text": "¡Me duele mucho la barriga!",
+            "age_group": "7-8",
+            "phrase_type": "exclamación",
+            "intent": "expresar_emoción",
+            "sentiment": {
+                "polarity": -0.8,
+                "subjectivity": 0.9
+            },
+            "topic": "otros",
+            "complexity": 0.3,
+            "context": "Queja sobre un dolor físico",
+            "is_negative": true,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["barriga"],
+            "conversation_history": [
+                {
+                    "text": "¿Te sientes bien?",
+                    "timestamp": "2024-07-11T12:00:00"
+                }
+            ]
+        },
+        {
+            "id": "288",
+            "text": "¿Por qué las hojas cambian de color en otoño?",
+            "age_group": "9-10",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": 0.2,
+                "subjectivity": 0.6
+            },
+            "topic": "naturaleza",
+            "complexity": 0.5,
+            "context": "Curiosidad sobre el cambio de color de las hojas",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["hojas", "otoño"],
+            "conversation_history": [
+                {
+                    "text": "Mira cómo cambian las hojas en otoño.",
+                    "timestamp": "2024-07-11T11:00:00"
+                }
+            ]
+        },
+        {
+            "id": "289",
+            "text": "Ayer aprendí a montar en bicicleta sin rueditas.",
+            "age_group": "9-10",
+            "phrase_type": "afirmación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.8,
+                "subjectivity": 0.7
+            },
+            "topic": "juegos",
+            "complexity": 0.5,
+            "context": "Orgullo por aprender a montar bicicleta",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["bicicleta"],
+            "conversation_history": [
+                {
+                    "text": "¿Qué hiciste ayer?",
+                    "timestamp": "2024-07-11T10:00:00"
+                }
+            ]
+        },
+        {
+            "id": "290",
+            "text": "No quiero ir a la excursión mañana, tengo miedo.",
+            "age_group": "9-10",
+            "phrase_type": "negación",
+            "intent": "negarse",
+            "sentiment": {
+                "polarity": -0.6,
+                "subjectivity": 0.8
+            },
+            "topic": "escuela",
+            "complexity": 0.5,
+            "context": "Rechazo a asistir a una excursión escolar",
+            "is_negative": true,
+            "is_subtle_negative": true,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["excursión"],
+            "conversation_history": [
+                {
+                    "text": "Mañana tenemos una excursión.",
+                    "timestamp": "2024-07-11T08:30:00"
+                }
+            ]
+        },
+        {
+            "id": "291",
+            "text": "¿Por qué el cielo es azul y no de otro color?",
+            "age_group": "9-10",
+            "phrase_type": "pregunta",
+            "intent": "preguntar",
+            "sentiment": {
+                "polarity": 0.2,
+                "subjectivity": 0.5
+            },
+            "topic": "naturaleza",
+            "complexity": 0.6,
+            "context": "Curiosidad sobre el color del cielo",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["cielo"],
+            "conversation_history": [
+                {
+                    "text": "Mira el cielo azul.",
+                    "timestamp": "2024-07-11T15:00:00"
+                }
+            ]
+        },
+        {
+            "id": "292",
+            "text": "¡Mamá, encontré un nido de pájaros en el árbol!",
+            "age_group": "9-10",
+            "phrase_type": "exclamación",
+            "intent": "compartir_información",
+            "sentiment": {
+                "polarity": 0.9,
+                "subjectivity": 0.7
+            },
+            "topic": "naturaleza",
+            "complexity": 0.5,
+            "context": "Descubrimiento de un nido de pájaros",
+            "is_negative": false,
+            "is_subtle_negative": false,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["nido", "pájaros", "árbol"],
+            "conversation_history": [
+                {
+                    "text": "Sal a jugar al jardín.",
+                    "timestamp": "2024-07-11T16:00:00"
+                }
+            ]
+        },
+        {
+            "id": "293",
+            "text": "No entiendo este problema de matemáticas.",
+            "age_group": "9-10",
+            "phrase_type": "negación",
+            "intent": "solicitar_ayuda",
+            "sentiment": {
+                "polarity": -0.3,
+                "subjectivity": 0.6
+            },
+            "topic": "escuela",
+            "complexity": 0.5,
+            "context": "Buscando ayuda con tarea de matemáticas",
+            "is_negative": true,
+            "is_subtle_negative": true,
+            "contains_sarcasm": false,
+            "dialect": "estándar",
+            "entities": ["problema de matemáticas"],
+            "conversation_history": [
+                {
+                    "text": "Termina tu tarea de matemáticas.",
+                    "timestamp": "2024-07-11T17:00:00"
+                }
+            ]
+        }
+      ]
 ]

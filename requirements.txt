@@ -1,9 +1,13 @@
-Django>=3.2
-psycopg2-binary>=2.9.9
+Django==3.2.18
+psycopg2-binary==2.9.9
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
 tensorflow==2.16.2
 scikit-learn==1.5.0 
 openai==1.35.9
-torch==2.2.2
 transformers==4.42.4
+datasets==1.17.0
+torch==2.2.2
+torchvision==0.17.2
+torchaudio==2.2.2
+huggingface_hub==0.23.4
