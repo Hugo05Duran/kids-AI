@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -82,9 +83,9 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DJANGO_DB_NAME', 'default_db_name'),
-        'USER': os.environ.get('DJANGO_DB_USER', 'default_user'),
-        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', ''),
+        'NAME': os.environ.get('DJANGO_DB_NAME', 'alba'),
+        'USER': os.environ.get('DJANGO_DB_USER', 'alba_user'),
+        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', 'alba_password'),
         'HOST': os.environ.get('DJANGO_DB_HOST', 'localhost'),
         'PORT': os.environ.get('DJANGO_DB_PORT', '5432'),
     }
@@ -139,7 +140,7 @@ SIMPLE_JWT = {
 
 #OPENAI API
 
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
