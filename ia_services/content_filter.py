@@ -93,11 +93,15 @@ class ContentFilter:
 
 content_filter = ContentFilter()
 
+
 '''
 # test
-text = "I don't want to go to school tomorrow, Hugo doesn't treat me well."
+text = "I don't want to have siblings because I only want to play with my mum and dad."
 result = content_filter.classify_text(text)
 
-print(result)      
+print(result) 
 
 '''
+
+
+
