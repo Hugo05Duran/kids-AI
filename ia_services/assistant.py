@@ -8,6 +8,9 @@ from django.conf import settings
 from transformers import pipeline
 from ia_services.content_filter import ContentFilter  
 from botocore.exceptions import BotoCoreError, ClientError
+from model_selection import ComplexityClassifier
+
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
 django.setup()
@@ -26,6 +29,12 @@ class AIAssistant:
         self.user_history = {}  
         self.transcribe_client = boto3.client('transcribe', region_name='eu-west-1')  # Especifica la región
         self.polly_client = boto3.client('polly', region_name='eu-west-1')
+        self.model_selection = ComplexityClassifier()
+        self.model_map = {
+            "simple": "gpt-3.5-turbo",
+            "moderate": "gpt-4-mini",
+            "complex": "gpt-4o"
+        }
 
 
     def get_age_appropriate_prompt(self, age):
@@ -64,60 +73,90 @@ class AIAssistant:
     
     def get_response(self, user_id, message, age):
         classification = self.classify_and_track_sentiment(user_id, message)
+        complexity, _ = self.model_selection.calculate_complexity(message)
+        selected_model = self.model_map[complexity]
+
         negative_emotions = {
             'anger': [
-                "Reconoce el enfado del niño de manera empática.",
-                "Valida sus sentimientos, haciéndole saber que es normal sentirse así.",
-                "Ofrece estrategias para manejar el enfado, como respirar profundamente o contar hasta diez.",
-                "Guía al niño a reflexionar sobre lo que lo hizo enojar y cómo podría manejarlo mejor en el futuro."
+                "Reconocer la emoción: Ayuda al niño a identificar y nombrar su enfado, enseñándole que es normal sentir enojo",
+                "Validar los sentimientos: Hazle saber que está bien sentirse enojado, pero que las reacciones negativas pueden controlarse.",
+                "Respiración y calma: Enséñales técnicas de respiración profunda o a contar hasta 10 para calmarse.",
+                "Canalizar la energía: Proporciona alternativas como dibujar, jugar o salir a caminar para liberar el enojo.",
+                "Enseñar a expresar emociones: Promueve el uso de palabras para expresar cómo se siente, en lugar de recurrir a la agresión.",
+                "Resolución de problemas: Ayuda al niño a identificar qué lo hace enojar y cómo solucionar la situación.",
+                "Reflexión posterior: Una vez calmado, habla sobre lo ocurrido para mejorar la comprensión emocional y cómo gestionar mejor situaciones similares en el futuro."
             ],
             'annoyance': [
-                "Reconoce la molestia del niño.",
-                "Explora la causa de la molestia con él.",
-                "Proporciona maneras de calmarse, como cambiar de actividad o hacer algo que le guste.",
-                "Anima al niño a pensar en cómo podría evitar o manejar mejor estas situaciones en el futuro."
+                "Identificar la molestia: Ayuda al niño a identificar qué le molesta.",
+                "Validar sus sentimientos: Asegúrate de que el niño se sienta escuchado.",
+                "Promover la empatía: Explora cómo los demás pueden sentirse en la misma situación.",
+                "Buscar soluciones prácticas: Anima a pensar en maneras de resolver la situación.",
+                "Técnicas de relajación: Practicar respiración profunda para calmarse.",
+                "Proporcionar alternativas: Ofrece actividades que distraigan o calmen.",
+                "Fomentar la comunicación asertiva: Enseña a expresar la molestia sin agresión."
             ],
             'disappointment': [
-                "Reconoce la decepción del niño.",
-                "Ayúdalo a entender que es normal sentirse así cuando las cosas no salen como uno quiere.",
-                "Proporciona ejemplos de cómo superar la decepción y seguir adelante.",
-                "Anímalo a pensar en cómo podría manejar sus expectativas y sentimientos la próxima vez."
-            ],
+                "Reconocer la emoción: Valida la decepción que siente el niño.",
+                "Normalizar las expectativas: Enséñale que no siempre obtenemos lo que deseamos.",
+                "Buscar lo positivo: Ayuda al niño a encontrar algo positivo en la situación.",
+                "Practicar la resiliencia: Enseña cómo manejar la frustración y seguir adelante.",
+                "Modelar reacciones sanas: Muestra cómo manejar la decepción con calma.",
+                "Ofrecer apoyo emocional: Escuchar sin minimizar sus sentimientos.",
+                "Establecer nuevas metas: Motívale a intentar de nuevo o explorar otras alternativas."            
+                ],
             'disapproval': [
-                "Reconoce que el niño está expresando desaprobación.",
-                "Valida sus sentimientos, recordándole que es válido tener opiniones fuertes.",
-                "Explora con él maneras constructivas de expresar su desaprobación.",
-                "Guía al niño a pensar en cómo puede comunicar sus opiniones de manera respetuosa y efectiva."
+                "Identificar la causa: Ayuda al niño a entender por qué desaprueba algo.",
+                "Validar la opinión: Reconoce su derecho a tener una opinión.",
+                "Promover el respeto: Enseña cómo expresar la desaprobación respetuosamente.",
+                "Explorar perspectivas: Fomenta la empatía y el entendimiento de otras opiniones.",
+                "Fomentar la auto-reflexión: Invítalo a analizar si su desaprobación es justa.",
+                "Canalizar la emoción: Ofrece actividades que le ayuden a pensar de forma positiva.",
+                "Enseñar la negociación: Motívalo a buscar soluciones en lugar de solo criticar."
             ],
             'disgust': [
-                "Reconoce que el niño siente disgusto.",
-                "Explora la causa del disgusto con él.",
-                "Ayúdalo a encontrar maneras de lidiar con este sentimiento, como hablar sobre ello o escribirlo.",
-                "Anímalo a pensar en cómo manejar estos sentimientos en situaciones futuras."
+                "Explorar la reacción: Pregunta qué es lo que provoca repugnancia.",
+                "Validar sus sentimientos: Asegúrate de que el niño se sienta comprendido.",
+                "Promover la curiosidad: Fomenta el análisis de la situación para entenderla mejor.",
+                "Fomentar el autocontrol: Enseña a manejar la repulsión sin exageraciones.",
+                "Cambiar el foco de atención: Ayuda al niño a distraerse o pensar en cosas agradables.",
+                "Modelar reacciones adecuadas: Demuestra cómo manejar la repugnancia sin reacciones extremas",
+                "Fomentar la apertura: Explora cómo algunas cosas pueden parecer menos desagradables con el tiempo."
             ],
             'fear': [
-                "Reconoce que el niño siente miedo.",
-                "Valida sus sentimientos, haciéndole saber que es normal sentir miedo a veces.",
-                "Proporciona maneras de enfrentar el miedo, como hablar sobre ello o pedir ayuda a un adulto.",
-                "Guía al niño a pensar en cómo puede sentirse seguro y protegido."
+                "Nombrar el miedo: Ayuda al niño a identificar lo que le da miedo.",
+                "Crear un espacio seguro: Proporciónale un entorno donde se sienta protegido.",
+                "Validar el miedo: Reconoce que su miedo es real para él.",
+                "Proporcionar información: Explica la situación para reducir el miedo irracional.",
+                "Enseñar técnicas de relajación: Practica la respiración profunda o visualizaciones.",
+                "Enfrentar gradualmente el miedo: Introduce la situación temida en pequeños pasos.",
+                "Fomentar la valentía: Elogia los esfuerzos por enfrentar el miedo."
             ],
             'grief': [
-                "Reconoce el dolor que el niño está sintiendo.",
-                "Valida sus sentimientos, asegurándole que está bien sentir tristeza.",
-                "Ofrece apoyo emocional, invitándolo a hablar sobre su pérdida o lo que lo entristece.",
-                "Anímalo a recordar momentos felices o cosas que lo hagan sentir mejor."
+                "Validar la tristeza: Deja que el niño exprese su dolor sin presionarlo a sentirse mejor.",
+                "Explicar el duelo: Ayuda a entender que el duelo es una respuesta natural.",
+                "Crear un espacio de memoria: Proporciónale formas de recordar lo perdido.",
+                "Fomentar la expresión emocional: Motívalo a hablar o dibujar sobre cómo se siente.",
+                "Proporcionar consuelo: Sé un apoyo constante y atento.",
+                "Promover la paciencia: Explica que el duelo lleva tiempo y es un proceso personal.",
+                "Fomentar la esperanza: Ayuda a encontrar momentos de alegría en medio de la tristeza."
             ],
             'sadness': [
-                "Reconoce la tristeza del niño.",
-                "Valida sus sentimientos, haciéndole saber que es normal sentirse triste a veces.",
-                "Proporciona maneras de mejorar su estado de ánimo, como hacer algo que le guste o hablar con alguien de confianza.",
-                "Guía al niño a pensar en cosas positivas que lo hagan sentir mejor."
+                "Identificar la causa: Pregunta qué lo está poniendo triste.",
+                "Validar los sentimientos: Hazle saber que es normal sentirse triste a veces.",
+                "Proporcionar apoyo emocional: Ofrece un abrazo o compañía.",
+                "Realizar actividades gratificantes: Invítalo a hacer algo que disfrute.",
+                "Enseñar a expresar la tristeza: Anímalo a hablar o a escribir sobre lo que siente.",
+                "Promover el autocuidado: Motívalo a descansar y cuidar de sí mismo.",
+                "Fomentar la esperanza: Recuérdale que la tristeza es temporal y que siempre hay cosas positivas en el futuro."
             ],
             'remorse': [
-                "Reconoce que el niño se siente arrepentido.",
-                "Valida sus sentimientos, recordándole que es normal sentirse mal por los errores.",
-                "Explora con él maneras de enmendar el error o aprender de la situación.",
-                "Guía al niño a pensar en cómo podría evitar cometer el mismo error en el futuro."
+                "Entender la causa: Pregunta qué lo hace sentir remordimiento.",
+                "Validar el sentimiento: Reafirma que está bien sentir remordimiento después de un error.",
+                "Fomentar la auto-reflexión: Ayúdalo a pensar en lo que podría haber hecho diferente.",
+                "Enseñar a pedir disculpas: Guíalo en cómo disculparse sinceramente si ha hecho daño.",
+                "Reparar el daño: Motívalo a hacer algo positivo para corregir su error.",
+                "Fomentar el perdón: Ayúdalo a perdonarse a sí mismo y aprender de la experiencia.",
+                "Establecer nuevos compromisos: Promueve el aprendizaje para evitar repetir el error."
             ]
         }
 
@@ -131,7 +170,7 @@ class AIAssistant:
             
             try:
                 response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
+                    model="gpt-4o",
                     messages=[
                         {"role": "system", "content": prompt},
                         {"role": "user", "content": message}
@@ -148,7 +187,7 @@ class AIAssistant:
             topic = self.detect_topic(message)
             try:
                 response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
+                    model=selected_model,
                     messages=[
                         {"role": "system", "content": f"{age_prompt} Asegúrate de que tu respuesta sea educativa, apropiada para niños y fácil de entender. Tema: {topic}."},
                         {"role": "user", "content": message}
