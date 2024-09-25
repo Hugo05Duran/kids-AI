@@ -34,10 +34,3 @@ class ComplexityClassifier:
         complexity = max(scores, key=scores.get)
         return complexity, scores
 
-
-
-# Ejemplo de uso
-classifier = ComplexityClassifier()
-input_text = "Implementing a convolutional neural network requires a deep understanding of optimization techniques."
-complexity, scores = classifier.calculate_complexity(input_text)
-print(f"Complexity: {complexity}, Scores: {scores}")
