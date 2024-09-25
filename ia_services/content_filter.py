@@ -1,22 +1,21 @@
 import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, AutoConfig
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from scipy.special import softmax
 
 class ContentFilter:
     def __init__(self):
-        self.tokenizer_general = AutoTokenizer.from_pretrained("cardiffnlp/twitter-roberta-base-sentiment-latest")
-        self.model_general = AutoModelForSequenceClassification.from_pretrained("cardiffnlp/twitter-roberta-base-sentiment-latest")
-        
-        self.tokenizer_specific = AutoTokenizer.from_pretrained("SamLowe/roberta-base-go_emotions")
-        self.model_specific = AutoModelForSequenceClassification.from_pretrained("SamLowe/roberta-base-go_emotions")
-        
+        # Usamos DistilRoBERTa para ambas clasificaciones, más ligero
+        self.tokenizer = AutoTokenizer.from_pretrained("distilroberta-base")
+        self.model_general = AutoModelForSequenceClassification.from_pretrained("cardiffnlp/twitter-distilroberta-sentiment")
+        self.model_specific = AutoModelForSequenceClassification.from_pretrained("SamLowe/roberta-base-go_emotions")  # Puedes cambiar esto a un modelo más ligero si es necesario
+
         self.dangerous_phrases = [
             "cross the railway tracks", "play with fire", "run into the street",
             "talk to strangers", "take unknown pills", "jump from high places"
         ]
 
     def classify_general(self, text):
-        encoded_input = self.tokenizer_general(text, return_tensors='pt')
+        encoded_input = self.tokenizer(text, return_tensors='pt', padding=True, truncation=True)
         with torch.no_grad():
             output = self.model_general(**encoded_input)
         scores = output[0][0].detach().numpy()
@@ -34,7 +33,7 @@ class ContentFilter:
         return classification
 
     def classify_specific(self, text, general_classification):
-        encoded_input = self.tokenizer_specific(text, return_tensors='pt')
+        encoded_input = self.tokenizer(text, return_tensors='pt', padding=True, truncation=True)
         with torch.no_grad():
             output = self.model_specific(**encoded_input)
         logits = output.logits
@@ -90,18 +89,4 @@ class ContentFilter:
             'specific': specific_classification
         }
 
-
 content_filter = ContentFilter()
-
-
-'''
-# test
-text = "I don't want to have siblings because I only want to play with my mum and dad."
-result = content_filter.classify_text(text)
-
-print(result) 
-
-'''
-
-
-
