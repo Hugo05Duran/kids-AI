@@ -10,6 +10,7 @@ import soundfile as sf
 import vosk
 import coqui_tts
 from coqui_tts.tts import TTS
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
 django.setup()
@@ -37,8 +38,7 @@ class AIAssistant:
             "moderate": "T5-base",   
             "complex": "gpt-4o"      
         }
-
-         
+  
         self.emotion_model_map = {
             "simple": "DistilRoBERTa",  
             "complex": "RoBERTa"        
@@ -245,6 +245,82 @@ class AIAssistant:
                 print(f"Error al obtener respuesta de AI: {e}")
                 return "Lo siento, no pude entender eso. ¿Podrías intentar preguntar de otra manera?"
 
+    
+    def create_story_with_child(self, user_id, age):
+    story_elements = {}
+    prompts = [
+        "¿Cómo se llama tu personaje principal?",
+        "¿Es tu personaje un niño, una niña, un animal u otra criatura?",
+        "¿Dónde ocurre la historia? Por ejemplo: en un bosque, en una ciudad, en el espacio.",
+        "¿Qué le gusta hacer a tu personaje?",
+        "¿Qué problema tiene que resolver en la historia?",
+        "¿Cómo termina la historia? ¿Qué aprende tu personaje?"
+    ]
+
+    for prompt in prompts:
+        # Sintetizar y reproducir el prompt
+        self.synthesize_speech(prompt, output_file="prompt.wav")
+        # Reproducir el audio al niño (implementa según tu plataforma)
+        # Capturar la respuesta del niño
+        audio_response = self.capture_audio()
+        child_response = self.transcribe_audio(audio_response)
+        # Validar la respuesta
+        if not child_response:
+            child_response = "Respuesta no proporcionada"
+        # Guardar la respuesta
+        key = prompt[:prompt.find('?')].strip().lower().replace('¿', '').replace(',', '').replace(' ', '_')
+        story_elements[key] = child_response
+
+    # Generar y presentar el cuento
+    story = self.generate_story(story_elements, age)
+    self.present_story(story)
+    return story
+
+    def initialize_llama_model(self):
+        self.tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-hf")
+        self.model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-hf")
+
+    def generate_story(self, story_elements, age):
+        age_prompt = self.get_age_appropriate_prompt(age)
+        story_prompt = f"""{age_prompt}
+    Utiliza los siguientes elementos para crear un cuento corto y divertido para un niño de {age} años:
+    - Personaje principal: {story_elements.get('cómo_se_llama_tu_personaje_principal', 'Un personaje')}
+    - Tipo de personaje: {story_elements.get('es_tu_personaje_un_niño_una_niña_un_animal_u_otra_criatura', 'una criatura mágica')}
+    - Lugar: {story_elements.get('dónde_ocurre_la_historia', 'un lugar mágico')}
+    - Actividades favoritas: {story_elements.get('qué_le_gusta_hacer_a_tu_personaje', 'explorar y jugar')}
+    - Problema a resolver: {story_elements.get('qué_problema_tiene_que_resolver_en_la_historia', 'un desafío emocionante')}
+    - Final y aprendizaje: {story_elements.get('cómo_termina_la_historia_qué_aprende_tu_personaje', 'una valiosa lección')}
+    Asegúrate de que el cuento sea **apropiado para niños**, **positivo** y **educativo**. Evita cualquier contenido que incluya violencia, lenguaje inapropiado o temas sensibles.
+    """
+
+   try:
+        inputs = self.tokenizer.encode(story_prompt, return_tensors="pt")
+        outputs = self.model.generate(inputs, max_length=500, temperature=0.5)
+        story = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        
+        # Aplicar la moderación usando la API de moderación de OpenAI
+        moderation_response = openai.Moderation.create(
+            input=story
+        )
+        moderation_result = moderation_response["results"][0]
+
+        if moderation_result["flagged"]:
+            # Si el contenido es inapropiado, informar al usuario y posiblemente regenerar el cuento
+            return "Lo siento, el cuento generado no es apropiado. Vamos a intentar crear otro cuento juntos."
+        else:
+            return story
+
+    except Exception as e:
+        print(f"Error al generar o moderar el cuento: {e}")
+        return "Lo siento, no pude generar el cuento en este momento."
+
+    def present_story(self, story, output_file="story_output.wav"):
+        # Sintetizar el cuento en audio
+        self.synthesize_speech(story, output_file=output_file)
+        # Reproducir el audio al niño (implementa según tu plataforma)
+        # Aquí puedes añadir el código para reproducir el archivo de audio
+
+    
     def get_sentiment_trend(self, user_id):
         if user_id not in self.user_history:
             return "No hay datos suficientes para mostrar una tendencia."

@@ -7,7 +7,7 @@ class ContentFilter:
         # Usamos DistilRoBERTa para ambas clasificaciones, más ligero
         self.tokenizer = AutoTokenizer.from_pretrained("distilroberta-base")
         self.model_general = AutoModelForSequenceClassification.from_pretrained("cardiffnlp/twitter-distilroberta-sentiment")
-        self.model_specific = AutoModelForSequenceClassification.from_pretrained("SamLowe/roberta-base-go_emotions")  # Puedes cambiar esto a un modelo más ligero si es necesario
+        self.model_specific = AutoModelForSequenceClassification.from_pretrained("SamLowe/roberta-base-go_emotions")  
 
         self.dangerous_phrases = [
             "cross the railway tracks", "play with fire", "run into the street",
