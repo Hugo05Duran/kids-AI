@@ -1,7 +1,6 @@
 import os
 import django
 import openai
-import time
 from django.conf import settings
 from transformers import pipeline
 from ia_services.content_filter import ContentFilter  
@@ -26,12 +25,10 @@ class AIAssistant:
         self.content_filter = ContentFilter()
         self.user_history = {}  
         self.model_selection = ComplexityClassifier()
-
-       
-        self.vosk_model = vosk.Model("model")  
-        
-       
+        self.vosk_model = vosk.Model("model")    
         self.tts = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=False, gpu=False)
+        self.comprehension_activity = ComprehensionActivity()
+
 
         self.model_map = {
             "simple": "DistilGPT2",  
@@ -206,11 +203,17 @@ class AIAssistant:
             ]
         }
 
-        emotion_model = self.get_emotion_model(complexity)
+        # Unir todas las emociones específicas en un solo diccionario
+        specific_emotions = {}
+        for category in classification['specific']:
+            specific_emotions.update(classification['specific'][category])
 
-        predominant_emotion = max(classification['specific_classification'], key=classification['specific_classification'].get)
+        # Encontrar la emoción predominante
+        predominant_emotion = max(specific_emotions, key=specific_emotions.get)
+        predominant_emotion_prob = specific_emotions[predominant_emotion]
 
-        if classification['specific_classification'][predominant_emotion] > 0.15:
+        # Comprobar si la emoción predominante es negativa y tiene una probabilidad significativa
+        if predominant_emotion in negative_emotions and predominant_emotion_prob > 0.15:
             instructions = negative_emotions.get(predominant_emotion, [])
             
             prompt = f"El niño está experimentando {predominant_emotion}. " + " ".join(instructions) + f" Responde como si hablaras con un niño de {age} años, asegurándote de ser educativo y apropiado."
@@ -224,12 +227,12 @@ class AIAssistant:
                     ]
                 )
                 return response.choices[0].message['content']
+            
             except Exception as e:
                 print(f"Error al obtener respuesta de AI: {e}")
                 return "Lo siento, no pude entender eso. ¿Podrías intentar preguntar de otra manera?"
 
         else:
-           
             age_prompt = self.get_age_appropriate_prompt(age)
             topic = self.detect_topic(message, complexity)
             try:
@@ -241,6 +244,7 @@ class AIAssistant:
                     ]
                 )
                 return response.choices[0].message['content']
+            
             except Exception as e:
                 print(f"Error al obtener respuesta de AI: {e}")
                 return "Lo siento, no pude entender eso. ¿Podrías intentar preguntar de otra manera?"
@@ -321,6 +325,11 @@ class AIAssistant:
         # Aquí puedes añadir el código para reproducir el archivo de audio
 
     
+    def start_comprehension_activity(self, user_id, age, interests):
+        # Iniciar la actividad de comprensión lectora
+        self.comprehension_activity.comprehension_activity(user_id, age, interests)
+    
+   
     def get_sentiment_trend(self, user_id):
         if user_id not in self.user_history:
             return "No hay datos suficientes para mostrar una tendencia."
